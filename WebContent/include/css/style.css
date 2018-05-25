@@ -1,0 +1,259 @@
+@charset "UTF-8";
+
+*
+{
+	font-family: Roboto, Arial;
+}
+
+body
+{
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p
+{
+	margin: 0;
+}
+
+a
+{
+	text-decoration: none;
+	color: black;
+}
+
+ul
+{
+	list-style: none;
+	padding: 0;
+}
+
+li
+{
+	margin: 5px 0px 10px 0px;
+	display: table;
+}
+
+input[type=text], input[type=password], input[type=date] {
+    padding-left: 3px;
+}
+
+select
+{
+	padding: 2px;
+    margin-top: 5px;
+}
+
+header
+{
+	padding: 20px 0px;
+	background-color: aliceblue;
+}
+
+.header-item
+{
+	display: inline-block;
+    width: 24.58%;
+    text-align: center;
+}
+
+.container {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+.col {
+    float: left;
+    height: -webkit-fill-available;
+}
+
+.lr-col {
+    width: 25%;
+}
+
+.center-col {
+    width: 50%;
+}
+
+@media screen and (max-width: 600px)
+{
+	.center-col {
+    	width: 90% !important;
+	}
+	
+	.lr-col {
+		width: 5% !important; 
+	}
+}
+
+@media screen and (max-width: 880px) and (min-width: 600px)
+{
+	.center-col {
+    	width: 70% !important;
+	}
+	
+	.lr-col {
+		width: 15% !important; 
+	}
+}
+
+@media screen and (max-width: 1024px) and (min-width: 880px)
+{
+	.center-col {
+    	width: 60% !important;
+	}
+	
+	.lr-col {
+		width: 20% !important; 
+	}
+}
+
+@media screen and (min-width: 1024px)
+{
+	.center-col {
+    	width: 50% !important;
+	}
+	
+	.lr-col {
+		width: 25% !important; 
+	}
+}
+
+.ud-row
+{
+    height: 50px;
+}
+
+.center-row
+{
+    padding: 25px 30px 50px 30px;
+    border: black 2px solid;
+    border-radius: 50px;
+}
+
+.page-title {
+    margin: 10px 0px 15px 0px;
+}
+
+.account-info-container, .password-container
+{
+	border: 2px grey solid;
+    margin-bottom: 20px;
+    padding: 5px 10px 15px 10px;
+}
+
+.form-title h2 {
+    margin: 10px 0px 20px 0px;
+}
+
+.reg-info li, .log-info li
+{
+	width: 100%;
+}
+
+.inline-field
+{
+	float: left;
+	width: 49%;
+}
+
+.last-name-field {
+    margin-left: 9.89px;
+}
+
+.first-name-container
+{
+	float: left;
+}
+
+.last-name-container
+{
+	float: left;
+	margin-left: 10px;
+}
+
+.clear-fix::after
+{
+	clear: both;
+}
+
+.text-field {
+    height: 30px;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 1px grey solid;
+    width: 100%;
+}
+
+.err-input
+{
+	color: red;
+	font-size: 10pt;
+}
+
+.submit
+{
+	margin-top: 10px;
+    padding: 8px 22px;
+    color: white;
+    text-decoration: none;
+}
+
+.login-btn, .register-btn
+{
+	border-radius: 3px;
+	background-color: #004de6;
+}
+
+.login-btn:hover, .register-btn:hover
+{
+	background-color: #00349d;
+}
+
+.login-btn:active, .register-btn:active {
+    background-color: #003db6;
+}
+
+.login-btn-container, .register-btn-container
+{
+	margin-top: 20px;
+}
+
+.goto-btn-container
+{
+	margin: 10px 0px 0px 5px;
+}
+
+.goto-btn
+{
+	text-decoration: none;
+	color: #004de6;
+}
+
+.update-text-field
+{
+	border: 1px grey solid;
+	border-radius: 2px;
+	padding: 2px 0px;
+	
+}
+
+.update-btn-container
+{
+	margin-top: 25px;
+}
+
+.update-account-btn, .update-password-btn
+{
+	border-radius: 3px;
+	background-color: #00ff53;
+}
+
+.update-account-btn:hover, .update-password-btn:hover
+{
+	background-color: #00d244;
+}
+
+.update-account-btn:active, .update-password-btn:active
+{
+	background-color: #00e84b;
+}
