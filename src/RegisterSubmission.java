@@ -88,7 +88,7 @@ public class RegisterSubmission extends HttpServlet {
 					+ "		<p><label><b>Gender : </b></label>" + gender + "</p>\n"
 					+ "		<p><label><b>Country : </b></label>" + country + "</p>\n"
 					+ "		<p><label><b>Date of Birth : </b></label>" + dateOfBirth + "</p>\n"
-					+ "		<p style = \"margin: 20px 0px;\"><a style = \"padding: 5px 30px; background-color: #00eee7; text-decoration: none; color: white; border-radius: 5px;\" href = \"register\">Edit</a><a style = \"margin-left: 30px; padding: 5px 20px; background-color: #30de30; text-decoration: none; color: white; border-radius: 5px;\" href = \"reg_confirm\">Confirm</a>\n"
+					+ "		<p style = \"margin: 20px 0px;\"><a class = \"edit-btn\" href = \"register\">Edit</a><a class = \"confirm-btn\" href = \"reg_confirm\">Confirm</a>\n"
 					+ " </div>\n"
 					+ "</body>\n"
 					+ "</html>");

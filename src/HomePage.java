@@ -19,7 +19,7 @@ public class HomePage extends HttpServlet {
 					"<head>\r\n" + 
 					"<meta charset=\"UTF-8\">\r\n" + 
 					"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-					"<title>My Website</title>\r\n" + 
+					"<title>Home | My Website</title>\r\n" + 
 					"<link rel = \"stylesheet\" href = \"include/css/style.css\" />\r\n" + 
 					"</head>\r\n" + 
 					"<body>\r\n" + 
@@ -37,7 +37,7 @@ public class HomePage extends HttpServlet {
 					"<head>\r\n" + 
 					"<meta charset=\"UTF-8\">\r\n" + 
 					"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-					"<title>My Website</title>\r\n" + 
+					"<title>Home | My Website</title>\r\n" + 
 					"<link rel = \"stylesheet\" href = \"include/css/style.css\" />\r\n" + 
 					"</head>\r\n" + 
 					"<body>\r\n" + 
@@ -46,10 +46,12 @@ public class HomePage extends HttpServlet {
 					"		<div class = \"header-item\"><a href = \"logout\">Logout</a></div>\r\n" + 
 					"	</header>\r\n" + 
 					"	<h2 style = \"margin: 20px;\"><label>Hello " + (String)request.getSession().getAttribute("UNAME_KEY") + "!</label></h2>\r\n" +
+					"	<br/>\r\n" +
+					"	<h3 style =\"margin-left: 20px\"><label>Download Profile Informtion</label></h3>\r\n" +
+					"	<p style = \"margin-left: 80px; margin-top: 10px;\"><label>As <a target = \"_blank\" href = \"download_txt\" class = \"goto-btn\">TXT</a> or <a target = \"_blank\" href = \"download_pdf\" class = \"goto-btn\">PDF</a></label></p>\r\n" +
 					"</body>\r\n" + 
 					"</html>");
+			
 		}
-		
-		
 	}
 }

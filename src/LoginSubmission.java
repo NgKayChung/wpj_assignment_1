@@ -34,6 +34,8 @@ public class LoginSubmission extends HttpServlet {
 			
 			ResultSet results = stmt.executeQuery(sql_query);
 			
+			results.next();
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("UNAME_KEY", results.getString("usr_unq_name"));
 			
@@ -45,7 +47,7 @@ public class LoginSubmission extends HttpServlet {
 					"<head>\r\n" + 
 					"<meta charset=\"UTF-8\">\r\n" + 
 					"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-					"<title>Login Account</title>\r\n" + 
+					"<title>Login Successful</title>\r\n" + 
 					"<link rel = \"stylesheet\" href = \"include/css/style.css\" />\r\n" + 
 					"</head>\r\n" + 
 					"<body>\r\n" + 

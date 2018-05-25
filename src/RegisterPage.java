@@ -161,7 +161,6 @@ public class RegisterPage extends HttpServlet {
 					"								<select id = \"country\" name = \"country\">\r\n" +
 					"									<option value = \"\">Select Country</option>\r\n";
 			
-			//
 			//print all countries
 			for(String country : countries) {
 				outputHTML += "<option value = \"" + country + "\" " + (country.equals(country_val) ? "selected" : "") + " >" + country + "</option>\r\n";

@@ -198,6 +198,11 @@ header
     text-decoration: none;
 }
 
+.login-btn-container, .register-btn-container
+{
+	margin-top: 20px;
+}
+
 .login-btn, .register-btn
 {
 	border-radius: 3px;
@@ -213,9 +218,41 @@ header
     background-color: #003db6;
 }
 
-.login-btn-container, .register-btn-container
+.edit-btn
 {
-	margin-top: 20px;
+	padding: 5px 30px;
+	border-radius: 5px;
+	background-color: #00eee7;
+	color: white;
+}
+
+.edit-btn:hover
+{
+	background-color: #00bbb6;
+}
+
+.edit-btn:active
+{
+	background-color: #00d6d0;
+}
+
+.confirm-btn
+{
+	margin-left: 30px;
+	padding: 5px 20px;
+	border-radius: 5px;
+	background-color: #00ff53;
+	color: white;
+}
+
+.confirm-btn:hover
+{
+	background-color: #00d244;
+}
+
+.confirm-btn:active
+{
+	background-color: #00e84b;
 }
 
 .goto-btn-container
@@ -227,33 +264,4 @@ header
 {
 	text-decoration: none;
 	color: #004de6;
-}
-
-.update-text-field
-{
-	border: 1px grey solid;
-	border-radius: 2px;
-	padding: 2px 0px;
-	
-}
-
-.update-btn-container
-{
-	margin-top: 25px;
-}
-
-.update-account-btn, .update-password-btn
-{
-	border-radius: 3px;
-	background-color: #00ff53;
-}
-
-.update-account-btn:hover, .update-password-btn:hover
-{
-	background-color: #00d244;
-}
-
-.update-account-btn:active, .update-password-btn:active
-{
-	background-color: #00e84b;
 }

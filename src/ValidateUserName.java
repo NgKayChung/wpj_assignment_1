@@ -11,7 +11,6 @@ public class ValidateUserName extends HttpServlet {
 	private Connection conn;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		try {

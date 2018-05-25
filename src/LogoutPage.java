@@ -23,7 +23,7 @@ public class LogoutPage extends HttpServlet {
 				"<head>\r\n" + 
 				"<meta charset=\"UTF-8\">\r\n" + 
 				"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-				"<title>Logged in</title>\r\n" + 
+				"<title>Logout</title>\r\n" + 
 				"<link rel = \"stylesheet\" href = \"include/css/style.css\" />\r\n" + 
 				"</head>\r\n" + 
 				"<body>\r\n" + 

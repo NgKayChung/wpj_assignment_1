@@ -36,6 +36,13 @@ public class LoginPage extends HttpServlet {
 						"</html>");
 				return;
 			}
+			
+			for (int i = 0; i < existingCookies.length; i++) {
+	            Cookie cookie = existingCookies[i];
+
+	            cookie.setMaxAge(0);
+	            response.addCookie(cookie);
+	         }
 		}
 		
 		out.println("<!DOCTYPE html>\r\n" + 
@@ -101,5 +108,4 @@ public class LoginPage extends HttpServlet {
 				"</body>\r\n" + 
 				"</html>");
 	}
-
 }
