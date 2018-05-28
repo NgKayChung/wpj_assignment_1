@@ -14,33 +14,47 @@ public class LoginSubmission extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		try {
+			// get user login identifier
+			// determine login type, via username or email
 			String userIdentifier = request.getParameter("user_identifier");
-			String login_type =  (userIdentifier.matches("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)?@[a-z0-9]+\\.[a-z0-9]{2,}$") ? "EMAIL" : "USERNAME");
+			String userPassword = request.getParameter("user_password");
 			
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my_website_db", "user1", "1111");
 			
 			Statement stmt = conn.createStatement();
 			
 			String sql_query = "";
+			String username = "";
 			
-			if(login_type.equals("USERNAME"))
+			/**
+			 * #if login type is email
+			 * 	get username from database
+			 * 
+			 * regular expression to determine user login type - email
+			 * @source - from Internet
+			 * @siteURL - https://stackoverflow.com/questions/8204680/java-regex-email/13013056
+			 */
+			if(userIdentifier.matches("^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)?@[a-z0-9]+\\.[a-z0-9]{2,}$"))
 			{
-				sql_query = "SELECT `usr_unq_name` FROM `usr_accnt` WHERE `usr_unq_name` = '" + userIdentifier + "';";
+				sql_query = "SELECT `usr_unq_name` FROM `usr_accnt` WHERE `usr_emailAddress` = '" + userIdentifier + "' AND `usr_password` = BINARY '" + userPassword + "';";
+				
+				ResultSet results = stmt.executeQuery(sql_query);
+				
+				if(!results.next()) {
+					throw new Exception("Error occured");
+				}
+				
+				username = results.getString("usr_unq_name");
+				
+				stmt.close();
+				conn.close();
+			} else {
+				username = userIdentifier;
 			}
-			else if(login_type.equals("EMAIL"))
-			{
-				sql_query = "SELECT `usr_unq_name` FROM `usr_accnt` WHERE `usr_emailAddress` = '" + userIdentifier + "';";
-			}
 			
-			ResultSet results = stmt.executeQuery(sql_query);
-			
-			results.next();
-			
+			// set login session - username as key
 			HttpSession session = request.getSession();
-			session.setAttribute("UNAME_KEY", results.getString("usr_unq_name"));
-			
-			stmt.close();
-			conn.close();
+			session.setAttribute("UNAME_KEY", username);
 			
 			out.println("<!DOCTYPE html>\r\n" + 
 					"<html>\r\n" + 

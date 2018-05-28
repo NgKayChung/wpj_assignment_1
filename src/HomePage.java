@@ -13,6 +13,15 @@ public class HomePage extends HttpServlet {
 		
 		Cookie existingCookies[] = request.getCookies();
 		
+		/*
+		 *check for existing cookies
+		 *
+		 *#if no cookies
+		 *	display not logged in page information
+		 *#else if there is one existing cookie, and the cookie name is JSESSIONID -> a session cookie
+		 *	display user logged in information
+		 *#endif
+		 **/
 		if(existingCookies == null) {
 			out.println("<!DOCTYPE html>\r\n" + 
 					"<html>\r\n" + 

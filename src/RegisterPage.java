@@ -30,10 +30,12 @@ public class RegisterPage extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my_website_db", "user1", "1111");
 			
+			//query country names from database
 			Statement stmt = conn.createStatement();
 			String sql_query = "SELECT * FROM `country_tb` ORDER BY country_name ASC;";
 			ResultSet results = stmt.executeQuery(sql_query);
 			
+			//stores query result to a list
 			ArrayList<String> countries = new ArrayList<String>();
 			
 			while(results.next()) {
@@ -44,8 +46,8 @@ public class RegisterPage extends HttpServlet {
 			conn.close();
 			
 			if(existingCookies != null) {
-				//retrieve cookies value and assign to the variables -> to set the values to the form
 				//if JSESSIONID exists, this indicates user already logged in -> redirect user back to home page
+				//Note - this case only occurs when user edit the browser URL to "localhost:18080/ServletAsignment/register"
 				if(existingCookies.length == 1 && existingCookies[0].getName().equals("JSESSIONID")) {
 					out.println("<!DOCTYPE html>\r\n" + 
 							"<html>\r\n" + 
@@ -68,6 +70,7 @@ public class RegisterPage extends HttpServlet {
 					return;
 				}
 				
+				//retrieve cookies value and assign to the variables -> to set the values to the form
 				for(Cookie cookie : existingCookies)
 				{
 					switch(cookie.getName())
@@ -161,7 +164,7 @@ public class RegisterPage extends HttpServlet {
 					"								<select id = \"country\" name = \"country\">\r\n" +
 					"									<option value = \"\">Select Country</option>\r\n";
 			
-			//print all countries
+			//print all countries as select options
 			for(String country : countries) {
 				outputHTML += "<option value = \"" + country + "\" " + (country.equals(country_val) ? "selected" : "") + " >" + country + "</option>\r\n";
 			}

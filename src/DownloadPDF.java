@@ -1,3 +1,12 @@
+/**
+ * A third party library that having the functionality
+ * to create PDF file
+ * 
+ * @source - from Internet
+ * @sitename - http://java2s.com
+ * @source URL - http://www.java2s.com/Code/Jar/i/Downloaditextpdf543jar.htm
+ * @author/developer - https://itextpdf.com 
+ */
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
@@ -16,20 +25,24 @@ public class DownloadPDF extends HttpServlet {
 	private Connection conn = null;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//set response output to PDF format 
 		response.setContentType("application/pdf");
 		Document document = new Document();
 		
         try {
+        	//PdfWriter - a class from third party library 
             PdfWriter.getInstance(document, response.getOutputStream());
             
             document.open();
             
             document.addTitle("MY WEBSITE - Profile Details");
             
+            //create a font object and set size and style
             Font datetime_f = new Font();
             datetime_f.setStyle(Font.ITALIC);
             datetime_f.setSize(8);
             
+            //create a paragraph object and set alignment to right
             Paragraph datetime_p = new Paragraph(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-LLL-uuuu, HH:mm:ss")), datetime_f);
             datetime_p.setAlignment(Element.ALIGN_RIGHT);
             
@@ -40,6 +53,7 @@ public class DownloadPDF extends HttpServlet {
             Paragraph sitename_p = new Paragraph("MY WEBSITE", sitename_f);
             sitename_p.setAlignment(Element.ALIGN_CENTER);
             
+            //create an empty paragraph, to print empty line
             Paragraph empty_p = new Paragraph(" ");
             
             Font title_f = new Font();
@@ -51,10 +65,15 @@ public class DownloadPDF extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my_website_db", "user1", "1111");
 			
+			//query user information
 			Statement stmt = conn.createStatement();
 			String sql_query = "SELECT * FROM `usr_accnt` WHERE `usr_unq_name` = '" + (String)request.getSession().getAttribute("UNAME_KEY") + "';";
 			ResultSet results = stmt.executeQuery(sql_query);
             
+			//#if data is found
+			//	create paragraph and set the content to PDF
+			//#else if no data found
+			//	print error in PDF
 			if(results.next()) {
 				Paragraph firstname_p = new Paragraph(String.format("%-20s : %s", "First Name", results.getString("usr_firstName")));
 	            Paragraph lastname_p = new Paragraph(String.format("%-20s : %s", "Last Name", results.getString("usr_lastName")));

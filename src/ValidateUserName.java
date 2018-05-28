@@ -4,6 +4,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import java.sql.*;
 
+// this Servlet page will call by javascript (AJAX function)
+// for checking username whether it is already existed or not
 @WebServlet("/check_user")
 public class ValidateUserName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,12 +21,14 @@ public class ValidateUserName extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my_website_db", "user1", "1111");
 			
+			// search in database and check if the username already existed
 			Statement stmt = conn.createStatement();
 			String sql_query = "SELECT `usr_unq_name` FROM `usr_accnt` WHERE `usr_unq_name` = BINARY '" + username + "'";
 			ResultSet results = stmt.executeQuery(sql_query);
 			
 			String searchResString = "";
 			
+			// if username existed, set search result to FOUND, otherwise NOT FOUND
 			if(results.next()) {
 				searchResString = "FOUND";
 			} else {
@@ -34,6 +38,7 @@ public class ValidateUserName extends HttpServlet {
 			stmt.close();
 			conn.close();
 			
+			// return (username found) value to javascript function
 			out.write(searchResString);
 		}
 		catch(Exception ex) {

@@ -1,7 +1,7 @@
 var fullname_errMsg = username_errMsg = email_errMsg = password_errMsg = gender_errMsg = country_errMsg = dob_errMsg = terms_errMsg = "";
 var userExisted = false;
 
-//add a click event to submit button
+// adds a click event to submit button
 document.getElementById("register-account").addEventListener("click", function() {
 	var register_form = document.getElementById("regForm");
 	
@@ -15,6 +15,14 @@ document.getElementById("register-account").addEventListener("click", function()
 	}
 });
 
+/**
+ * adds a focus out event function to check for username
+ * send an AJAX (Asynchronous Javascript And XML) request to web server
+ * 	server  - query database with the login username
+ * 			- returns back a message ("FOUND" / "NOT FOUND") to AJAX function
+ * 
+ * @returns boolean (true / false)
+ */
 document.getElementById("user_name").addEventListener("focusout", function() {
 	var usr_name_val = this.value;
 	
@@ -55,10 +63,18 @@ document.getElementById("user_name").addEventListener("focusout", function() {
 	}
 });
 
+/**
+ * add a focus in event to user password input field
+ * set error message field to empty
+ */
 document.getElementById("user_password").addEventListener("focusin", function() {
 	document.getElementById("password-err").innerHTML = "";
 });
 
+/**
+ * add a focus out event to user password input field
+ * check for password length when focus changes from this field to other 
+ */
 document.getElementById("user_password").addEventListener("focusout", function() {
 	var usr_password_val = this.value;
 	
@@ -73,10 +89,18 @@ document.getElementById("user_password").addEventListener("focusout", function()
 	}
 });
 
+/**
+ * add a focus in event to user email input field
+ * set error message field to empty
+ */
 document.getElementById("user_email").addEventListener("focusin", function() {
 	document.getElementById("email-err").innerHTML = "";
 });
 
+/**
+ * add a focus out event to user email input field
+ * check for valid email when focus changes from this field to other 
+ */
 document.getElementById("user_email").addEventListener("focusout", function() {
 	var usr_email_val = this.value;
 	
@@ -91,6 +115,11 @@ document.getElementById("user_email").addEventListener("focusout", function() {
 	}
 });
 
+/**
+ * function to check all the fields in register form
+ * 
+ * @returns boolean (true / false)
+ */
 function register_validFields() {
 	var success = true;
 	
@@ -192,6 +221,7 @@ function register_validFields() {
 	return success;
 }
 
+// function to display login error message(s)
 function displayRegisterErrors()
 {
 	document.getElementById("fullname-err").innerHTML = fullname_errMsg;

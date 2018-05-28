@@ -27,7 +27,8 @@ public class ConfirmRegistration extends HttpServlet {
 			String dateOfBirth_val = "";
 			
 			if(existingCookies != null) {
-				//check if user is already logged in
+				//if JSESSIONID exists, this indicates user already logged in -> redirect user back to home page
+				//Note - this case only occurs when user edit the browser URL to "localhost:18080/ServletAsignment/reg_confirm"
 				if(existingCookies.length == 1 && existingCookies[0].getName().equals("JSESSIONID")) {
 					out.println("<!DOCTYPE html>\r\n" + 
 							"<html>\r\n" + 
@@ -49,6 +50,8 @@ public class ConfirmRegistration extends HttpServlet {
 					return;
 				}
 				
+				//1. get cookies value
+				//2. delete cookies
 				for(Cookie cookie : existingCookies)
 				{
 					cookie.setMaxAge(0);
@@ -90,10 +93,10 @@ public class ConfirmRegistration extends HttpServlet {
 					}
 				}
 				
-				//store the information into database
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my_website_db", "user1", "1111");
 				
+				//store the registration information into database
 				Statement stmt = conn.createStatement();
 				String sql_query = "INSERT INTO usr_accnt(`usr_firstName`, `usr_lastName`, `usr_unq_name`, `usr_emailAddress`, `usr_password`, `usr_gender`, `usr_country`, `usr_dateOfBirth`) "
 						+ "VALUES('" + firstname_val + "', '" + lastname_val + "', '" + username_val + "', '" + emailAddress_val + "', '" + password_val + "', '" + gender_val + "', '" + country_val + "', '" + dateOfBirth_val + "');";
@@ -102,6 +105,8 @@ public class ConfirmRegistration extends HttpServlet {
 				stmt.close();
 				conn.close();
 				
+				//set user login session
+				//username as key
 				HttpSession session = request.getSession();
 				session.setAttribute("UNAME_KEY", username_val);
 				

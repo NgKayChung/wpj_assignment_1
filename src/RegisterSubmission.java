@@ -11,7 +11,7 @@ public class RegisterSubmission extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		try {
-			//get all the values from the form
+			//get all the values from the register form
 			String firstname = request.getParameter("first_name");
 			String lastname = request.getParameter("last_name");
 			String username = request.getParameter("user_name");
@@ -21,8 +21,7 @@ public class RegisterSubmission extends HttpServlet {
 			String country = request.getParameter("country");
 			String dateOfBirth = request.getParameter("date_of_birth");
 			
-			//create cookies
-			//if any, delete cookies
+			//if existing cookies, delete them
 			Cookie existingCookies[] = request.getCookies();
 			
 			if(existingCookies != null)

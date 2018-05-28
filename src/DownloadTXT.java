@@ -11,6 +11,8 @@ public class DownloadTXT extends HttpServlet {
 	private Connection conn = null;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//set response content type to plain text
+		//set text file name to "download.txt"
 		response.setContentType("text/plain");
 		response.setHeader("Content-Disposition", "attachment;filename=download.txt");
 		
@@ -20,6 +22,7 @@ public class DownloadTXT extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my_website_db", "user1", "1111");
 			
+			//get user profile information from database
 			Statement stmt = conn.createStatement();
 			String sql_query = "SELECT * FROM `usr_accnt` WHERE `usr_unq_name` = '" + (String)request.getSession().getAttribute("UNAME_KEY") + "';";
 			ResultSet results = stmt.executeQuery(sql_query);

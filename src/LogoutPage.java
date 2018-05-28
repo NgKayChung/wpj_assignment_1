@@ -11,9 +11,11 @@ public class LogoutPage extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
+		//remove user login session
 		HttpSession session = request.getSession();
 		session.removeAttribute("UNAME_KEY");
 		
+		//remove session cookie from user browser
 		Cookie sessionCookie = request.getCookies()[0];
 		sessionCookie.setMaxAge(0);
 		response.addCookie(sessionCookie);

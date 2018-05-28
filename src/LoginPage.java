@@ -15,6 +15,7 @@ public class LoginPage extends HttpServlet {
 		
 		if(existingCookies != null) {
 			//if JSESSIONID exists, this indicates user already logged in -> redirect user back to home page
+			//Note - this case only occurs when user edit the browser URL to "localhost:18080/ServletAsignment/login"
 			if(existingCookies.length == 1 && existingCookies[0].getName().equals("JSESSIONID")) {
 				out.println("<!DOCTYPE html>\r\n" + 
 						"<html>\r\n" + 
@@ -37,6 +38,7 @@ public class LoginPage extends HttpServlet {
 				return;
 			}
 			
+			//delete other cookies, if existed
 			for (int i = 0; i < existingCookies.length; i++) {
 	            Cookie cookie = existingCookies[i];
 
